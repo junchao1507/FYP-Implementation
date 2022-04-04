@@ -10,5 +10,7 @@ scikit_learn==1.0.2
 seaborn==0.11.2
 spellchecker==0.4
 st_annotated_text==3.0.0
+streamlit==1.6.0
+streamlit_authenticator==0.1.0
 textblob==0.17.1
 validate_email==1.3
