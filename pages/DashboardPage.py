@@ -824,7 +824,7 @@ class DashboardPage(HydraHeadApp):
             
             
                 website_email = 'automated.exam.marking.system@gmail.com'
-                email_password = 'hmnfpdjwtdqeunyh'
+                email_password = 'isajaoxknpcsvygq'
                 sub = st.session_state.view_this_exam.iloc[0]['exam_title'] + ' Result'
                 body_message = ''.join(str(b) for b in body_message_list)
                 emails = studid + '@kdu-online.com'
