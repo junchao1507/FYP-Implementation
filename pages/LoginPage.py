@@ -14,7 +14,7 @@ from PIL import Image
 class LoginPage(HydraHeadApp): 
     def run(self):
         st.markdown("<h1 style='text-align: center; line-height: 120px;'>Automated Exam Marking System  - Login Page</h1>", unsafe_allow_html=True)
-        image = Image.open(r"C:\Users\Lenovo\OneDrive\Desktop\Y3S2\FYP\FYP-Implementation\images\ComputerGrading4.jpg")
+        image = "https://raw.githubusercontent.com/junchao1507/FYP-Implementation/main/images/ComputerGrading4.jpg"
         st.image(image, caption='', width=1450)
         
         # Login form -> to prevent page refresh after one input

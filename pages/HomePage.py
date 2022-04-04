@@ -15,7 +15,7 @@ class HomePage(HydraHeadApp):
     def run(self):
         ##st.write(st.session_state.current_user)
         st.markdown("<h1 style='text-align: center; line-height: 120px;'>Automated Examination Marking System - Home Page</h1>", unsafe_allow_html=True)
-        image = Image.open(r"C:\Users\Lenovo\OneDrive\Desktop\Y3S2\FYP\FYP-Implementation\images\ComputerGrading.jpg")
+        image = "https://raw.githubusercontent.com/junchao1507/FYP-Implementation/main/images/ComputerGrading.jpg"
         st.image(image, caption='', width=1450)
         
         if 'exam-title' not in st.session_state:
