@@ -22,6 +22,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 lemmatizer = WordNetLemmatizer()
 nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('wordnet')
 stop_words = stopwords.words('english')
 
 
