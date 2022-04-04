@@ -22,8 +22,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 lemmatizer = WordNetLemmatizer()
 nltk.download('stopwords')
 stop_words = stopwords.words('english')
-from textblob import TextBlob
-from spellchecker import SpellChecker
+
 
 
 
