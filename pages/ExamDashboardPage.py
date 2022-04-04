@@ -249,6 +249,7 @@ class ExamDashboardPage(HydraHeadApp):
         # Loop through each exam records and extend the question_ids to the questions list
         for e in exams_dict.each():
             questions.extend(e.val()['questions'])
+        
             
         # Remove duplicated values (one question shared by multiple exams)
         questions = list(dict.fromkeys(questions))

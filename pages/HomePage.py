@@ -88,7 +88,7 @@ class HomePage(HydraHeadApp):
                     e = {
                         'exam_password': st.session_state.exam_pw,
                         'exam_title': st.session_state.exam_title,
-                        'questions' : [],
+                        'questions' : "",
                         'num_of_ques': st.session_state.num_of_ques,
                         'duration_minutes': st.session_state.duration_minutes,
                         'date': str(st.session_state.date),
