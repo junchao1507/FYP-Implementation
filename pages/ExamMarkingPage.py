@@ -26,8 +26,7 @@ nltk.download('wordnet')
 stop_words = stopwords.words('english')
 
 
-
-
+from num2words import num2words
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -257,7 +256,7 @@ class ExamMarkingPage(HydraHeadApp):
                             annotated_text(*highlight_text)
                             st.write()
                             
-                            cos_sim = self.cal_cos_similarity(' '.join(original_keyword_lists), ' '.join(cor_keys))
+                            cos_sim = self.cal_cos_similarity(' '.join(self.convert_num(original_keyword_lists)), ' '.join(self.convert_num(cor_keys)))
                             score = self.cal_entity_score(cos_sim, subques_mark, ans_total_mark)
                             total_score += score
                             st.write('\n')
@@ -504,6 +503,19 @@ class ExamMarkingPage(HydraHeadApp):
     
     
     
+    def convert_num(self, answer):
+        new_answer = []
+        
+        for word in answer:
+            if word.isdecimal():
+                new_answer.append(num2words(word))
+            else:
+                new_answer.append(word)
+                
+        return new_answer
+    
+    
+    
     def cal_cos_similarity(self, sample_answer, student_answer):
         data = [sample_answer, student_answer]
         count_vectorizer = CountVectorizer()
@@ -573,11 +585,23 @@ class ExamMarkingPage(HydraHeadApp):
                     st.text_area("Entity 2 Answer: ", value = s.val()['e2_answer'], key = "e2_answer")
                     st.number_input("Entity 2 Answer Total Marks:: ", value = s.val()['e2_answer_total_marks'], min_value = 1, step = 1, key = "e2_answer_total_marks")
                     
+                else:
+                    st.session_state.entity2 = ""
+                    st.session_state.e2_marks = 0
+                    st.session_state.e2_answer = ""
+                    st.session_state.e2_answer_total_marks = 0
+                    
                 if s.val()['e3_answer']:
                     st.text_input("Entity 3: ", value = s.val()['entity3'], key = "entity3")
                     st.number_input("Entity 3 Marks Allocated: ", value = s.val()['e3_marks'], min_value = 1, step = 1, key = "e3_marks")
                     st.text_area("Entity 3 Answer: ", value = s.val()['e3_answer'], key = "e3_answer")
                     st.number_input("Entity 3 Answer Total Marks:: ", value = s.val()['e3_answer_total_marks'], min_value = 1, step = 1, key = "e3_answer_total_marks")
+                    
+                else:
+                    st.session_state.entity3 = ""
+                    st.session_state.e3_marks = 0
+                    st.session_state.e3_answer = ""
+                    st.session_state.e3_answer_total_marks = 0
                     
                 if s.val()['e4_answer']:
                     st.text_input("Entity 4: ", value = s.val()['entity4'], key = "entity4")
@@ -585,11 +609,23 @@ class ExamMarkingPage(HydraHeadApp):
                     st.text_area("Entity 4 Answer: ", value = s.val()['e4_answer'], key = "e4_answer")
                     st.number_input("Entity 4 Answer Total Marks:: ", value = s.val()['e4_answer_total_marks'], min_value = 1, step = 1, key = "e4_answer_total_marks")
                     
+                else:
+                    st.session_state.entity4 = ""
+                    st.session_state.e4_marks = 0
+                    st.session_state.e4_answer = ""
+                    st.session_state.e4_answer_total_marks = 0
+                    
                 if s.val()['e5_answer']:
                     st.text_input("Entity 5: ", value = s.val()['entity5'], key = "entity5")
                     st.number_input("Entity 5 Marks Allocated: ", value = s.val()['e5_marks'], min_value = 1, step = 1, key = "e5_marks")
                     st.text_area("Entity 5 Answer: ", value = s.val()['e5_answer'], key = "e5_answer")
                     st.number_input("Entity 5 Answer Total Marks:: ", value = s.val()['e5_answer_total_marks'], min_value = 1, step = 1, key = "e5_answer_total_marks")
+                    
+                else:
+                    st.session_state.entity5 = ""
+                    st.session_state.e5_marks = 0
+                    st.session_state.e5_answer = ""
+                    st.session_state.e5_answer_total_marks = 0
 
             
             

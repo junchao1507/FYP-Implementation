@@ -108,8 +108,7 @@ class DashboardPage(HydraHeadApp):
                 title_markdown = "<h1 style='text-align: center; line-height: 120px;'>" + st.session_state.view_this_exam.iloc[0]['exam_title'] + " Dashboard</h1>"
                 st.markdown(line)
                 st.markdown(title_markdown, unsafe_allow_html=True)
-                
-                
+
                 
                 with st.container():
                     col1, col2, col3, col4 = st.columns(4)
@@ -600,6 +599,7 @@ class DashboardPage(HydraHeadApp):
     
     
     def get_question_passing_rate(self, df_answers, sqid):
+        pass_rate = 0
         passing_mark = df_answers.iloc[0]['total_marks']/2
         df = df_answers[df_answers['sub_question_id'] == sqid]
         df['status']= df['score'].apply(lambda x: 'PASS' if (x >= passing_mark) else 'FAIL') 
@@ -607,8 +607,12 @@ class DashboardPage(HydraHeadApp):
         d.rename(columns={'score': 'count'}, inplace=True, errors='raise')
         d['status'] = d.index
         d.reset_index(drop=True, inplace=True)
+        
+        if 'PASS' in d['status'].unique():
+            int(d[d['status'] == "PASS"]['count'])/d['count'].sum()
+        
 
-        return int(d[d['status'] == "PASS"]['count'])/d['count'].sum()
+        return pass_rate
     
         
         
